@@ -37,7 +37,7 @@ def index():
 def plots():
     os.chdir("..")
     # base_linux = '/home/jetgal/psucalc'
-    base_linux = '/usr/share/nginx/html'
+    base_linux = '/usr/share/nginx/html/tokenlife'
     if os.name == 'nt':
         basename = os.path.abspath(os.curdir)
     else:
