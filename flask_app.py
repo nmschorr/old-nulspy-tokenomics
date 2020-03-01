@@ -1,11 +1,13 @@
 
+
+import os
+from datetime import datetime
+from waitress import serve
+from time import sleep
 from flask import Flask, request, render_template, render_template_string
 from jinja2 import Environment, select_autoescape
 import appsupport
-from datetime import datetime
-from waitress import serve
-import os
-from time import sleep
+
 
 app = Flask(__name__)
 
@@ -37,10 +39,10 @@ def index():
 def plots():
     os.chdir("..")
     # base_linux = '/home/jetgal/psucalc'
-    # base_linux = '/usr/share/nginx/html/vkg'
-    base_linux = "E:/PycharmProjects/psu-calc"
+    base_linux = '/usr/share/nginx/html/vkg'
     if os.name == 'nt':
-        basename = os.path.abspath(os.curdir)
+        basename = "E:/PycharmProjects/psu-calc"
+        # basename = os.path.abspath(os.curdir)
     else:
         basename = base_linux
 
@@ -78,10 +80,11 @@ def plots():
 
 if __name__ == '__main__':
     if os.name == 'nt':
-        serve(app)
+        # myserver.bind_server_socket()  # for wsgi linux
+
+        serve(app, host='0.0.0.0', port=5000)
     else:
-        app.run(host='0.0.0.0')
+        app.run('0.0.0.0', 5000)
 
-
-    #app.run('127.0.0.1', 5000, debug=True)  (nginx)
+        # app.run('127.0.0.1', 5000, debug=True)  (nginx)
 
